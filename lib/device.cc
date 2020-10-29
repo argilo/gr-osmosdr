@@ -30,10 +30,6 @@
 #include "config.h"
 #endif
 
-#ifdef ENABLE_OSMOSDR
-#include <osmosdr_src_c.h>
-#endif
-
 #ifdef ENABLE_FCD
 #include <fcd_source_c.h>
 #endif
@@ -52,10 +48,6 @@
 
 #ifdef ENABLE_UHD
 #include <uhd_source_c.h>
-#endif
-
-#ifdef ENABLE_MIRI
-#include <miri_source_c.h>
 #endif
 
 #ifdef ENABLE_SDRPLAY
@@ -150,10 +142,6 @@ devices_t device::find(const device_t &hint)
 
   devices_t devices;
 
-#ifdef ENABLE_OSMOSDR
-  BOOST_FOREACH( std::string dev, osmosdr_src_c::get_devices() )
-    devices.push_back( device_t(dev) );
-#endif
 #ifdef ENABLE_FCD
   BOOST_FOREACH( std::string dev, fcd_source_c::get_devices() )
     devices.push_back( device_t(dev) );
@@ -164,10 +152,6 @@ devices_t device::find(const device_t &hint)
 #endif
 #ifdef ENABLE_UHD
   BOOST_FOREACH( std::string dev, uhd_source_c::get_devices() )
-    devices.push_back( device_t(dev) );
-#endif
-#ifdef ENABLE_MIRI
-  BOOST_FOREACH( std::string dev, miri_source_c::get_devices() )
     devices.push_back( device_t(dev) );
 #endif
 #ifdef ENABLE_SDRPLAY
